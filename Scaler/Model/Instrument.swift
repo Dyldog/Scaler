@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import DylKit
 
-enum Instrument: Hashable, CaseIterable {
+enum Instrument: Hashable, CaseIterable, Pickable {
     case piano
     case guitar
     

@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import DylKit
 
-indirect enum Note: Hashable {
+indirect enum Note: Hashable, Pickable {
     case aFlat
     case a
     case bFlat
@@ -21,6 +22,8 @@ indirect enum Note: Hashable {
     case fSharp
     case g
     case nth(Note, Int)
+    
+    var title: String { name }
     
     var innerNote: Note {
         switch self {

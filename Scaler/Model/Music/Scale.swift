@@ -10,10 +10,12 @@ import DylKit
 
 typealias RootOffset = Int
 
-struct Scale: CaseIterable, Hashable {
+struct Scale: CaseIterable, Hashable, Pickable {
 
     let name: String
     let rootOffsets: [RootOffset]
+    
+    var title: String { name }
     
     static var major: Scale = .init(name: "Major", intervals: [.T, .T, .ST, .T, .T, .T, .ST])
     static var naturalMinor: Scale = .init(name: "Natural Minor", rotating: .major, by: 5)

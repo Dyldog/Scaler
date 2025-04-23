@@ -24,13 +24,9 @@ struct ContentView: View {
     
     @ViewBuilder
     private var instrumentView: some View {
-        Picker("Instrument", selection: $instrument) {
-            ForEach(Instrument.allCases) { instrument in
-                Text(instrument.title).tag(instrument)
-            }
-        }
-        .labelsHidden()
-        .pickerStyle(.segmented)
+        Picker("Instrument", selection: $instrument)
+            .labelsHidden()
+            .pickerStyle(.segmented)
         
         switch instrument {
         case .piano:
@@ -47,6 +43,7 @@ struct ContentView: View {
     
     private var pianoView: some View {
         KeyboardView(startNote: key, highlightedNotes: scale.inTheKeyOf(key))
+            .frame(maxHeight: 200)
     }
     
     @ViewBuilder
@@ -54,21 +51,13 @@ struct ContentView: View {
         HStack {
             Spacer()
             
-            Picker("Scale", selection: $scale) {
-                ForEach(Scale.allCases) { scale in
-                    Text(scale.name).tag(scale)
-                }
-            }
-            .labelsHidden()
-            .fixedSize()
+            Picker("Scale", selection: $scale)
+                .labelsHidden()
+                .fixedSize()
             
-            Picker("Key", selection: $key) {
-                ForEach(Note.allNotes) { note in
-                    Text(note.name).tag(note)
-                }
-            }
-            .labelsHidden()
-            .fixedSize()
+            Picker("Key", selection: $key, cases: Note.allNotes)
+                .labelsHidden()
+                .fixedSize()
             
             Spacer()
         }
